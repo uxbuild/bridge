@@ -5,6 +5,15 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan"); // HTTP request logger
 
+// import routes
+const authRoutes = require("./routes/auth/authRoutes");
+
+// App
+const app = express();
+
+// middleware dev (log http requests)
+app.use(morgan("dev"));
+
 // middleware (json)
 app.use(express.json());
 

@@ -4,10 +4,10 @@ const authController = require("../../controllers/auth/authController");
 const { protect } = require("../../middleware/authMiddleware");
 
 // GET /api/users
-router.get("/", protect, usersController.getUsers);
+router.get("/", protect, usersController.getAllUsers);
 
 // GET /api/users/:id
-router.post("/:userId", usersController.getUser);
+router.post("/:userId", protect, usersController.getUserById);
 
 // PUT /api/users/:userId
 router.put("/:userId", protect, usersController.updateUser);

@@ -65,7 +65,7 @@ const authenticateUser = async (email, password) => {
   }
 };
 
-// GET USER DATA
+// GET me
 const getMe = async (userId) => {
   try {
     // Fetch the user from the database using their ID
