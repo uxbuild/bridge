@@ -7,6 +7,7 @@ const morgan = require("morgan"); // HTTP request logger
 
 // import routes
 const authRoutes = require("./routes/auth/authRoutes");
+const usersRoutes = require("./routes/users/usersRoutes");
 
 // App
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/users", usersRoutes);
 
 // error handling (no match)
 app.use((req, res, next) => {
