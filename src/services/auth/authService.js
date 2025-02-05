@@ -67,25 +67,32 @@ const authenticateUser = async (email, password) => {
 
 // GET me
 const getMe = async (userId) => {
+    console.log('*****************');
+    console.log('auth service getMe: ', userId);
+    
   try {
-    // Fetch the user from the database using their ID
-    const user = await prisma.user.findUnique({
+    // find user using ID..
+    const user = await prisma.users.findUnique({
       where: { id: userId },
       select: {
         id: true,
         email: true,
         firstName: true,
         lastName: true,
-        createdAt: true,
-        updatedAt: true,
       },
     });
 
+    // if user not found..
     if (!user) {
       throw new Error("User not found");
     }
 
+    console.log('auth service user', user);
+    
+
+    // return user
     return user;
+
   } catch (error) {
     throw new Error(error.message || "Error fetching user details");
   }
