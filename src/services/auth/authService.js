@@ -37,7 +37,7 @@ const registerUser = async (email, password, firstName, lastName) => {
 const authenticateUser = async (email, password) => {
   try {
     // Find user by email
-    const user = await prisma.user.findUnique({
+    const user = await prisma.users.findUnique({
       where: { email },
     });
 
