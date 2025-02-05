@@ -21,7 +21,7 @@
 - GET me DONE
 
 - GET users DONE
-- GET users/:id
+- GET users/:id DONE
 - PUT users/:id
 - DELETE users/:id
 
