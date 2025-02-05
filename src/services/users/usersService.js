@@ -3,9 +3,8 @@ const prisma = require("../../../prisma/prismaClient");
 
 // Get all items..
 const getAllUsers = async () => {
-
-    console.log('**************');
-    console.log('users service');
+  console.log("**************");
+  console.log("users service");
 
   try {
     // get users..
@@ -21,18 +20,36 @@ const getAllUsers = async () => {
     // do a check for no results.. ??
 
     // return users..
-    console.log('users', users);
-    
+    console.log("users", users);
+
     return users;
   } catch (error) {
     throw new Error("Error retrieving ALL items.");
   }
 };
 
+// GET /api/users/:id
+const getUserById = async (userId) => {
+    try {
+      return await prisma.users.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+          password: true,
+        },
+      });
+    } catch (error) {
+      throw new Error(error.message || 'Error fetching review by ID');
+    }
+  };
+
 // export module functions..
 module.exports = {
   getAllUsers,
-  //   getUserById,
+  getUserById,
   //   updateUserById,
   //   deleteUserById,
 };

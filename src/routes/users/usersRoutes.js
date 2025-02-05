@@ -7,7 +7,7 @@ const { protect } = require("../../middleware/authMiddleware");
 router.get("/", protect, usersController.getAllUsers);
 
 // GET /api/users/:id
-router.post("/:id", protect, usersController.getUserById);
+router.get("/:id", protect, usersController.getUserById);
 
 // PUT /api/users/:userId
 router.put("/:id", protect, usersController.updateUserById);

@@ -16,6 +16,15 @@
 
 ## backend setup
 
+- POST register DONE
+- POST login DONE
+- GET me DONE
+
+- GET users DONE
+- GET users/:id
+- PUT users/:id
+- DELETE users/:id
+
 ## testing
 
 ## deployment

@@ -24,7 +24,7 @@ app.use("/api/users", usersRoutes);
 
 // error handling (no match)
 app.use((req, res, next) => {
-  res.status(404).json({ message: "Not FOUND" });
+  res.status(404).json({ message: "404 route not FOUND" });
 });
 
 // error handling (general)
