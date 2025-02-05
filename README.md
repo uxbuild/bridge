@@ -36,19 +36,24 @@ github = 2 repos (backend, frontend)
 - DB = use UUIDs.
 - DB user (id, firstName, lastName, email, password, NOT NULL)
 - endpoint: register
+    - POST /api/auth/register
   - DB = email, first, last, password encrypted
   - return JWT token
 - endpoint: login
+- POST /api/auth/login
   - email, password
   - return JWT token
 - endpoint: about/me
+    - GET /api/auth/me
   - protected
   - returns: first, last, id, email
   - use middleware (token validate)
 - endpoint: GET all users
+    - GET /api/users
   - protected
   - use middleware (token validate)
 - endpoint: GET single user
+    - GET /api/users/:id
   - protected
 - endpoint: DELETE user / protected
 - endpoint: UPDATE user
