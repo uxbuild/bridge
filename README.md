@@ -16,6 +16,15 @@
 
 ## backend setup
 
+- POST register DONE
+- POST login DONE
+- GET me DONE // protected
+
+- GET users DONE // protected
+- GET users/:id DONE // protected
+- PUT users/:id DONE // protected
+- DELETE users/:id DONE // protected, cant delete self..
+
 ## testing
 
 ## deployment
