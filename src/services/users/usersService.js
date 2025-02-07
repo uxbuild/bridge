@@ -60,25 +60,40 @@ const updateUserById = async (...args) => {
 
   const { validate } = require("uuid");
 
-  console.log('id: ', id);
-  
+  console.log("id: ", id);
+
   // check userId is uuid..
   if (!validate(id)) {
     throw new Error("Invalid userId format");
   }
-  console.log('valid uuid userId', id);
-  
+  console.log("valid uuid userId", id);
+
   try {
     const updatedUser = await prisma.users.update({
       where: { id: id },
       data: { email, firstName, lastName, password },
     });
 
-    
-
     return updatedUser;
   } catch (error) {
     throw new Error(error.message || "Error updating review");
+  }
+};
+
+const deleteUserById = async (userId) => {
+  console.log('*************');
+  console.log('user service delete userId:', userId);
+  
+  try {
+    // Delete the user by userId
+    const deletedUser = await prisma.users.delete({
+      where: { id: userId },
+    });
+
+    // Return the deleted user record if it exists
+    return deletedUser || null;
+  } catch (error) {
+    throw new Error("Error deleting user");
   }
 };
 
@@ -87,5 +102,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUserById,
-  //   deleteUserById,
+  deleteUserById,
 };

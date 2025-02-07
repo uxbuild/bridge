@@ -22,7 +22,7 @@
 
 - GET users DONE
 - GET users/:id DONE
-- PUT users/:id
+- PUT users/:id DONE
 - DELETE users/:id
 
 ## testing

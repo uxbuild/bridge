@@ -67,19 +67,36 @@ const updateUserById = async (req, res) => {
 };
 
 // DELETE /api/users/:id
-const deleteUserById = async (req, res) => {
-  // authenticated user..
-  const { userId } = req.user;
+const deleteUserById = async (req, res, next) => {
+console.log('**************');
+console.log('user service delete', req.user);
+
   // target user..
-  const { id } = req.params;
+  const { id } = req.params;  
+  // current user..
+  const userId = req.user.userId;
+console.log(`target user:${id}, current user: ${userId}`);
 
   try {
-    // delete
-    const deletedUser = await usersService.deleteUserId(id);
+    
+    // check not deleting our own account..
+    if (id === userId) {
+      return res.status(403).send({ message: 'You cannot delete your own account.' });
+    }
 
-    res.status(200).json(deletedUser);
+    // delete user..
+    const deletedUser = await usersService.deleteUserById(id);
+
+    if (deletedUser) {
+      return res.status(200).send({
+        message: 'User deleted successfully',
+        deletedUser,  // Include the deleted user information in the response
+      });
+    }
+
+    res.status(404).send({ message: 'User not found' });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    next(error);
   }
 };
 
