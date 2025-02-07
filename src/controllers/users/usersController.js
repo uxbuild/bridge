@@ -53,6 +53,7 @@ const updateUserById = async (req, res) => {
 
   try {
     const updatedUser = await usersService.updateUserById(
+      id,
       email,
       firstName,
       lastName,

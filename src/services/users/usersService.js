@@ -51,17 +51,30 @@ const getUserById = async (userId) => {
 const updateUserById = async (...args) => {
   console.log("************");
   console.log("users service update", args);
-  let [userId, email, firstName, lastName, password] = args;
+  let [id, email, firstName, lastName, password] = args;
 
   // password encrypt..
   if (password) {
     password = await bcrypt.hash(password, 10);
   }
+
+  const { validate } = require("uuid");
+
+  console.log('id: ', id);
+  
+  // check userId is uuid..
+  if (!validate(id)) {
+    throw new Error("Invalid userId format");
+  }
+  console.log('valid uuid userId', id);
+  
   try {
     const updatedUser = await prisma.users.update({
-      where: { id: userId },
-      data: { email, firstName, lastName, password: hash },
+      where: { id: id },
+      data: { email, firstName, lastName, password },
     });
+
+    
 
     return updatedUser;
   } catch (error) {
