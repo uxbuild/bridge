@@ -18,12 +18,12 @@
 
 - POST register DONE
 - POST login DONE
-- GET me DONE
+- GET me DONE // protected
 
-- GET users DONE
-- GET users/:id DONE
-- PUT users/:id DONE
-- DELETE users/:id
+- GET users DONE // protected
+- GET users/:id DONE // protected
+- PUT users/:id DONE // protected
+- DELETE users/:id DONE // protected, cant delete self..
 
 ## testing
 
