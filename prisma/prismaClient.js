@@ -1,3 +1,6 @@
+// debug..
+console.log("DATABASE_URL:", process.env.DATABASE_URL ? "Loaded" : "MISSING");
+
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 

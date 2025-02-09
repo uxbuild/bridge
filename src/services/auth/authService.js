@@ -2,6 +2,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const prisma = require("../../../prisma/prismaClient");
 
+console.log("authService.js loaded!");
+console.log("JWT_SECRET:", process.env.JWT_SECRET ? "Loaded" : "MISSING");
+
 // REGISTER
 const registerUser = async (email, password, firstName, lastName) => {
   console.log("api auth register service", `${email}, ${password}`);

@@ -9,6 +9,10 @@ const morgan = require("morgan"); // HTTP request logger
 const authRoutes = require("./routes/auth/authRoutes");
 const usersRoutes = require("./routes/users/usersRoutes");
 
+// Debugging: Log if routes are loaded
+console.log("Auth Routes:", authRoutes);
+console.log("User Routes:", usersRoutes);
+
 // App
 const app = express();
 
@@ -18,9 +22,21 @@ app.use(morgan("dev"));
 // middleware (json)
 app.use(express.json());
 
+// debug route..
+app.get("/debug", (req, res) => {
+  res.json({ message: "Debug route works!" });
+});
+
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
+
+// Debug: Log all registered routes
+app._router.stack.forEach((r) => {
+  if (r.route && r.route.path) {
+    console.log(`Route registered: ${r.route.path}`);
+  }
+});
 
 // error handling (no match)
 app.use((req, res, next) => {
